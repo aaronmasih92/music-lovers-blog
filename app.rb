@@ -17,6 +17,7 @@ end
 get "/" do
   if session[:user_id]
       	@posts = User.find(session[:user_id]).posts
+      @username = User.find(session[:user_id])
     erb :signed_in_homepage
   else
     erb :signed_out_homepage
@@ -110,4 +111,9 @@ delete '/post/:id' do
 	@post = Post.find(params[:id])
 	@post.destroy
 	redirect '/'
+end
+
+get "/profile" do
+    @user = User.find(session[:user_id])
+    erb :profile
 end
