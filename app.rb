@@ -9,21 +9,20 @@ configure :development do
 set :database, "sqlite3:app.db"
 end
 
-# this will ensure this will only be used on production
 configure :production do
-  # this environment variable is auto generated/set by heroku
-  #   check Settings > Reveal Config Vars on your heroku app admin panel
   set :database, ENV["DATABASE_URL"]
 end
 
 
 get "/" do
   if session[:user_id]
+      	@posts = User.find(session[:user_id]).posts
     erb :signed_in_homepage
   else
     erb :signed_out_homepage
   end
 end
+
 
 # displays sign in form
 get "/sign-in" do
@@ -68,7 +67,9 @@ post "/sign-up" do
     password: params[:password],
           bday: params[:bday],
     firstname: params[:firstname],
-    lastname: params[:lastname]
+    lastname: params[:lastname],
+      fav_artist: params[:fav_artist],
+      instrument: params[:instrument]
   )
 
   # this line does the signing in
@@ -92,4 +93,21 @@ get "/sign-out" do
   flash[:info] = "You have been signed out"
   
   redirect "/"
+end
+
+get "/post/:id" do
+ @post = Post.find(params[:id])
+    erb :blog_post
+end
+
+post '/post' do
+    @user = User.find(session[:user_id])
+	@post = Post.create(title: params[:title], body: params[:body], user_id: @user.id)
+	redirect '/'
+end
+
+delete '/post/:id' do
+	@post = Post.find(params[:id])
+	@post.destroy
+	redirect '/'
 end

@@ -25,3 +25,19 @@ li a {
 #form{
     padding-top:70px;
 }
+
+.form-group {
+    padding-left:25px;
+}
+
+#signup {
+    background-image: url(/images/signup.jpg);
+     /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
