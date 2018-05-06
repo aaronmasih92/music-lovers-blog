@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "sinatra/flash"
 require "./models"
+require "pry"
 
 enable :sessions
 
@@ -117,4 +118,19 @@ end
 get "/community" do
 	@posts = Post.all
     erb :community
+end
+
+post "/delete" do
+
+  @posts = Post.all
+  for post in @posts
+    #delete all posts associated with user
+    if post.user_id == User.find(session[:user_id]).id
+      Post.destroy(post.id)
+    end
+  end
+  User.destroy(session[:user_id])
+  session[:user_id] = nil
+  flash[:warning] = "Account Deleted."
+  redirect "/"
 end
