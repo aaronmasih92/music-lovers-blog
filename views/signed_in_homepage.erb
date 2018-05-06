@@ -1,23 +1,22 @@
-<h1>hey <%= @username.username %></h1>
+<h1 class="text-center">Hey, <%= @username.username %>!</h1>
 <br><br>
-<h2>All My Posts:</h2>
+<h2 class="text-center">Latest Posts:</h2>
 <br>
-<ul>
-<% @posts.reverse.each do |post| %>
- <li>
-   <a href="/post/<%= post.id %>"><%= post.title %></a> | <%= post.created_at %> 
- </li>
+<div align="center">
+<% @posts.first(20).reverse.each do |post| %>
+    <ol>
+   <a href="/post/<%= post.id %>"><%= post.title %></a> | <%= post.created_at %> | Posted By: <%= post.user.username %>
+        </ol>
 <% end %>
-</ul>
+    </div>
 
-<div class="container">
-<h2>Add A Blog Post</h2>
+<div align="center">
+<h2 align="center">Add A Blog Post</h2>
 <form method="post" action="/post">
 		<label for="title">Title: </label>
-   <input type="text" name="title">
+    <textarea rows="1" cols="50" type="text" name="title"></textarea>
     <br>
-   <label for="body">Body: </label>
-   <input type="text" name="body">
+   <textarea type="text" name="body" rows="20" cols="100">Write your entry here...</textarea><br>
    <input type ="submit" value="Add Post">
 </form>
 </div>

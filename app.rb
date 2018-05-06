@@ -98,22 +98,23 @@ end
 
 get "/post/:id" do
  @post = Post.find(params[:id])
+    @user = @post.user
     erb :blog_post
 end
 
 post '/post' do
     @user = User.find(session[:user_id])
-	@post = Post.create(title: params[:title], body: params[:body], user_id: @user.id)
+	@post = Post.create(title: params[:title], body: params[:body], user_id: session[:user_id])
 	redirect '/'
 end
 
-delete '/post/:id' do
-	@post = Post.find(params[:id])
-	@post.destroy
-	redirect '/'
-end
 
 get "/profile" do
     @user = User.find(session[:user_id])
     erb :profile
+end
+
+get "/community" do
+	@posts = Post.all
+    erb :community
 end
