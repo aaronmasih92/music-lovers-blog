@@ -7,10 +7,20 @@ gem "sinatra-activerecord"
 gem "rake"
 gem "pry"
 
-group :development do
-  gem "sqlite3"
-end
+gem "pg"
 
+group :development do
+    gem "pg"
+
+ end
+ 
+# this will only install/run on test environments
+# group :test do
+#     gem "faker"
+#     gem "rspec"
+# end
+
+# this will only install/run on production environments
 group :production do
-  gem "pg"
+   gem 'pg'
 end

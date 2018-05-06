@@ -7,12 +7,10 @@ require "pry"
 enable :sessions
 
 configure :development do
-set :database, "sqlite3:app.db"
+set :database, "postgres:app.db"
 end
 
-configure :production do
-  set :database, ENV["DATABASE_URL"]
-end
+
 
 
 get "/" do
