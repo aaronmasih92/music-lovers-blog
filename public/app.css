@@ -3,7 +3,7 @@ body, html {
 }
 .bg { 
     /* The image used */
-    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/images/home5.jpg);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1) ), url(/images/home5.jpg);
 
     /* Full height */
     height: 100%; 
