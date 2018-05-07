@@ -122,7 +122,6 @@ post "/delete" do
 
   @posts = Post.all
   for post in @posts
-    #delete all posts associated with user
     if post.user_id == User.find(session[:user_id]).id
       Post.destroy(post.id)
     end
