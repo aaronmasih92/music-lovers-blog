@@ -1,8 +1,12 @@
+<center>
 <h2>All Posts</h2>
 <ul>
 <% @posts.reverse.each do |post| %>
  <li>
    <a href="/post/<%= post.id %>"><%= post.title %></a> | <%= post.created_at %> | Posted By: <%= post.user.username %>
  </li>
-<% end %>
+        <% end %>
+
 </ul>
+
+    </center>

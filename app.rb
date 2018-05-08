@@ -5,9 +5,12 @@ require "./models"
 require "pry"
 
 enable :sessions
-
 configure :development do
-set :database, "postgres:app.db"
+  set :database, "sqlite3:app.db"
+end
+
+configure :production do
+  set :database, ENV["DATABASE_URL"]
 end
 
 
